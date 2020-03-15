@@ -4,7 +4,6 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.Headers
 import com.github.kittinunf.result.Result
 import com.github.lusingander.Config
-import me.lazmaid.kraph.Kraph
 
 class GraphQLClient(
     private val id: String
@@ -14,26 +13,8 @@ class GraphQLClient(
         private const val GITHUB_API_URL = "https://api.github.com/graphql"
     }
 
-    private val query = Kraph {
-        query {
-            fieldObject("user", args = mapOf("login" to id)) {
-                field("company")
-                fieldObject("pullRequests", args = mapOf("first" to 50)) {
-                    fieldObject("nodes") {
-                        fieldObject("repository") {
-                            field("name")
-                        }
-                        field("title")
-                        field("state")
-                        field("url")
-                    }
-                }
-            }
-        }
-    }
-
     fun request(): String {
-        return executePost(query.toRequestString())
+        return executePost(UserPullRequests.queryJson(this.id))
     }
 
     private fun executePost(query: String): String {
