@@ -2,7 +2,8 @@ package com.github.lusingander.github
 
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.Headers
-import com.github.kittinunf.result.Result
+import com.github.kittinunf.fuel.gson.responseObject
+import com.github.kittinunf.result.failure
 import com.github.lusingander.Config
 
 class GraphQLClient(
@@ -17,11 +18,11 @@ class GraphQLClient(
         val (_, _, result) = Fuel.post(Config.githubApiUrl())
             .header(Headers.AUTHORIZATION, "bearer ${Config.githubApiToken()}")
             .body(query)
-            .responseString()
+            .responseObject<UserPullRequestsResponse>()
 
-        if (result is Result.Failure) {
-            throw result.getException()
+        result.failure {
+            throw it
         }
-        return result.get()
+        return result.get().toString()
     }
 }

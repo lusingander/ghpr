@@ -44,3 +44,42 @@ class UserPullRequests {
     }
 }
 
+data class UserPullRequestsResponse(
+    val data: UserPullRequestsData
+)
+
+data class UserPullRequestsData(
+    val user: User
+)
+
+data class User(
+    val pullRequests: PullRequest
+)
+
+data class PullRequest(
+    val nodes: List<PullRequestNode>,
+    val edges: List<Edge>,
+    val totalCount: Int
+)
+
+data class PullRequestNode(
+    val repository: Repository,
+    val title: String,
+    val state: String,
+    val url: String,
+    val createAt: String
+)
+
+data class Edge(
+    val cursor: String,
+    val node: PullRequestNode
+)
+
+data class Repository(
+    val name: String,
+    val owner: Owner
+)
+
+data class Owner(
+    val login: String
+)
