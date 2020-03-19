@@ -11,7 +11,7 @@ fun main() {
         get("/api/user/:id") { ctx ->
             val id = ctx.pathParam("id")
             val response = GraphQLClient(id).request()
-            ctx.result(response)
+            ctx.json(response)
         }
         start(Config.port())
     }

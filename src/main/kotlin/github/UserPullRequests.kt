@@ -67,7 +67,7 @@ data class PullRequestNode(
     val title: String,
     val state: String,
     val url: String,
-    val createAt: String
+    val createdAt: String
 )
 
 data class Edge(
