@@ -6,14 +6,7 @@
         <el-collapse>
           <el-collapse-item v-for="repo in owner.repositories" :key="repo.name">
             <template slot="title">{{ repo.name }}</template>
-            <div class="pull-requests">
-              <el-collapse>
-                <el-collapse-item v-for="pr in repo.pullRequests" :key="pr.url">
-                  <template slot="title">{{ pr.title }}</template>
-                  State: {{ pr.state }} Created at: {{ pr.createdAt }} {{ pr.url }}
-                </el-collapse-item>
-              </el-collapse>
-            </div>
+            <pull-requests :prs="repo.pullRequests"></pull-requests>
           </el-collapse-item>
         </el-collapse>
       </div>
@@ -42,9 +35,6 @@
 </script>
 <style>
 .repositories {
-  margin: 10px 20px
-}
-.pull-requests {
   margin: 10px 20px
 }
 </style>
