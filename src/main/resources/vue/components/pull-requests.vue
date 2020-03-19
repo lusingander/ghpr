@@ -15,7 +15,7 @@
   });
 </script>
 <style>
-.pull-requests {
-  margin: 10px 20px
-}
+  .pull-requests {
+    margin: 10px 20px
+  }
 </style>
