@@ -6,7 +6,6 @@
           <template slot="title">
             <owner-title :name="owner.name"></owner-title>
           </template>
-          <owner-detail :url="owner.url"></owner-detail>
           <repositories :repos="owner.repositories"></repositories>
         </el-collapse-item>
       </el-collapse>
