@@ -21,6 +21,10 @@ class UserPullRequests {
                   owner {
                     login
                   }
+                  primaryLanguage {
+                    name
+                    color
+                  }
                   stargazers {
                     totalCount
                   }
@@ -75,12 +79,18 @@ data class Edge(
 data class Repository(
     val name: String,
     val owner: Owner,
+    val primaryLanguage: PrimaryLanguage,
     val stargazers: Stargazers,
     val forkCount: Int
 )
 
 data class Owner(
     val login: String
+)
+
+data class PrimaryLanguage(
+    val name: String,
+    val color: String
 )
 
 data class Stargazers(

@@ -43,9 +43,15 @@ private fun buildRepositories(prs: List<PullRequestNode>, ownerUrl: String): Lis
 private fun buildRepository(name: String, prs: List<PullRequestNode>, ownerUrl: String): Repository {
     val url = "$ownerUrl/$name"
     val repo = prs.first().repository
-    val stars = repo.stargazers.totalCount
-    val forks = repo.forkCount
-    return Repository(name, url, stars, forks, prs.map { buildPullRequest(it) })
+    return Repository(
+        name = name,
+        url = url,
+        stars = repo.stargazers.totalCount,
+        forks = repo.forkCount,
+        langName = repo.primaryLanguage.name,
+        langColor = repo.primaryLanguage.color,
+        pullRequests = prs.map { buildPullRequest(it) }
+    )
 }
 
 private fun buildPullRequest(pr: PullRequestNode): PullRequest {
@@ -69,6 +75,8 @@ data class Repository(
     val url: String,
     val stars: Int,
     val forks: Int,
+    val langName: String,
+    val langColor: String,
     val pullRequests: List<PullRequest>
 )
 
