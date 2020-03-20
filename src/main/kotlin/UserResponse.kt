@@ -4,6 +4,8 @@ import com.github.lusingander.github.Edge
 import com.github.lusingander.github.PullRequestNode
 import com.github.lusingander.github.UserPullRequestsResponse
 
+private const val GITHUB_BASE_URL = "https://github.com/"
+
 fun buildUserResponseFrom(src: UserPullRequestsResponse): UserResponse {
     val prs = src.data.user.pullRequests
     return UserResponse(
@@ -26,7 +28,8 @@ private fun buildOwners(nodes: List<PullRequestNode>): List<Owner> {
 }
 
 private fun buildOwner(name: String, prs: List<PullRequestNode>): Owner {
-    return Owner(name, buildRepositories(prs))
+    val url = GITHUB_BASE_URL + name
+    return Owner(name, url, buildRepositories(prs))
 }
 
 private fun buildRepositories(prs: List<PullRequestNode>): List<Repository> {
@@ -53,6 +56,7 @@ data class UserResponse(
 
 data class Owner(
     val name: String,
+    val url: String,
     val repositories: List<Repository>
 )
 

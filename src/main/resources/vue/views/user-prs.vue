@@ -1,7 +1,10 @@
 <template id="user-prs">
   <el-collapse v-model="activeOwners">
     <el-collapse-item v-for="owner in owners" :key="owner.name" :name="owner.name">
-      <template slot="title">{{ owner.name }}</template>
+      <template slot="title">
+        <owner-title :name="owner.name"></owner-title>
+      </template>
+      <owner-detail :url="owner.url"></owner-detail>
       <repositories :repos="owner.repositories"></repositories>
     </el-collapse-item>
   </el-collapse>
