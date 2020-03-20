@@ -59,6 +59,7 @@ private fun buildPullRequest(pr: PullRequestNode): PullRequest {
     return PullRequest(
         title = pr.title,
         state = pr.state,
+        number = pr.number,
         url = pr.url,
         additions = pr.additions,
         deletions = pr.deletions,
@@ -93,6 +94,7 @@ data class Repository(
 data class PullRequest(
     val title: String,
     val state: String,
+    val number: Int,
     val url: String,
     val additions: Int,
     val deletions: Int,

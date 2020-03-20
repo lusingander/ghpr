@@ -1,5 +1,6 @@
 <template id="pull-request-detail">
   <div>
+    <pull-request-link :url="pr.url" :number="pr.number"></pull-request-link>
     <span class="pull-request-date">
       <span>Created: {{ pr.createdAt }}</span>
       <span v-if="pr.closedAt">Closed: {{ pr.closedAt }}</span>
