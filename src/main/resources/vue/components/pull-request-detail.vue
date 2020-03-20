@@ -4,6 +4,7 @@
       <span>Created: {{ pr.createdAt }}</span>
       <span v-if="pr.closedAt">Closed: {{ pr.closedAt }}</span>
     </span>
+    <change-lines :additions="pr.additions" :deletions="pr.deletions"></change-lines>
   </div>
 </template>
 <script>

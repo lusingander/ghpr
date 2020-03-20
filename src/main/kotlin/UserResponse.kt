@@ -60,6 +60,8 @@ private fun buildPullRequest(pr: PullRequestNode): PullRequest {
         title = pr.title,
         state = pr.state,
         url = pr.url,
+        additions = pr.additions,
+        deletions = pr.deletions,
         createdAt = pr.createdAt,
         closedAt = pr.closedAt
     )
@@ -92,6 +94,8 @@ data class PullRequest(
     val title: String,
     val state: String,
     val url: String,
+    val additions: Int,
+    val deletions: Int,
     val createdAt: String,
     val closedAt: String?
 )

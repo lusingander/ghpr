@@ -34,6 +34,8 @@ class UserPullRequests {
                 title
                 state
                 url
+                additions
+                deletions
                 createdAt
                 closedAt
               }
@@ -71,6 +73,8 @@ data class PullRequestNode(
     val title: String,
     val state: String,
     val url: String,
+    val additions: Int,
+    val deletions: Int,
     val createdAt: String,
     val closedAt: String?
 )
