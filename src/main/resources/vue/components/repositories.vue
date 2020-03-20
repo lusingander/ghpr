@@ -1,6 +1,6 @@
 <template id="repositories">
   <div class="repositories">
-    <el-collapse>
+    <el-collapse v-model="activeRepositories">
       <el-collapse-item v-for="repo in repos" :key="repo.name" :name="repo.name">
         <template slot="title">
           <repository-title :name="repo.name"></repository-title>
@@ -15,6 +15,12 @@
   Vue.component("repositories", {
     template: "#repositories",
     props: ["repos"],
+    data: () => ({
+      activeRepositories: []
+    }),
+    created() {
+      this.activeRepositories = this.$props.repos.map(r => r.name);
+    }
   });
 </script>
 <style>
