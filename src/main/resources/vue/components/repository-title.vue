@@ -1,6 +1,6 @@
 <template id="repository-title">
   <div>
-    <div class="repository-name">{{ name }}</div>
+    <span class="repository-name">{{ name }}</span>
   </div>
 </template>
 <script>

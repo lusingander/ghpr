@@ -1,6 +1,6 @@
 <template id="owner-title">
   <div>
-    <div class="owner-name">{{ name }}</div>
+    <span class="owner-name">{{ name }}</span>
   </div>
 </template>
 <script>
