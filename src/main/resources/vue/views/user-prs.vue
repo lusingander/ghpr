@@ -2,14 +2,7 @@
   <el-collapse>
     <el-collapse-item v-for="owner in owners" :key="owner.name">
       <template slot="title">{{ owner.name }}</template>
-      <div class="repositories">
-        <el-collapse>
-          <el-collapse-item v-for="repo in owner.repositories" :key="repo.name">
-            <template slot="title">{{ repo.name }}</template>
-            <pull-requests :prs="repo.pullRequests"></pull-requests>
-          </el-collapse-item>
-        </el-collapse>
-      </div>
+      <repositories :repos="owner.repositories"></repositories>
     </el-collapse-item>
   </el-collapse>
 </template>
@@ -36,7 +29,4 @@
   });
 </script>
 <style>
-  .repositories {
-    margin: 10px 20px
-  }
 </style>
