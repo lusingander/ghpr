@@ -24,6 +24,7 @@ class UserPullRequests {
                   stargazers {
                     totalCount
                   }
+                  forkCount
                 }
                 title
                 state
@@ -74,7 +75,8 @@ data class Edge(
 data class Repository(
     val name: String,
     val owner: Owner,
-    val stargazers: Stargazers
+    val stargazers: Stargazers,
+    val forkCount: Int
 )
 
 data class Owner(

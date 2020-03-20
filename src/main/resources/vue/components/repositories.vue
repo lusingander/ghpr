@@ -5,7 +5,7 @@
         <template slot="title">
           <repository-title :name="repo.name"></repository-title>
         </template>
-        <repository-detail :url="repo.url" :stars="repo.stars"></repository-detail>
+        <repository-detail :url="repo.url" :forks="repo.forks" :stars="repo.stars"></repository-detail>
         <pull-requests :prs="repo.pullRequests"></pull-requests>
       </el-collapse-item>
     </el-collapse>
