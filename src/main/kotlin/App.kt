@@ -1,6 +1,7 @@
 package com.github.lusingander
 
 import com.github.lusingander.github.GraphQLClient
+import com.github.lusingander.github.GraphQLRequestException
 import io.javalin.Javalin
 import io.javalin.plugin.rendering.vue.VueComponent
 
@@ -13,6 +14,7 @@ fun main() {
             val response = GraphQLClient(id).request()
             ctx.json(response)
         }
+        exception(GraphQLRequestException::class.java) { _, ctx -> ctx.status(400) }
         start(Config.port())
     }
 }
