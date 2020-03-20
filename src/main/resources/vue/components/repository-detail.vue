@@ -1,6 +1,6 @@
 <template id="repository-detail">
   <div>
-    <el-link :href="repo.url" target="_blank">{{ repo.url }}</el-link>
+    <repository-link :url="repo.url"></repository-link>
     <span class="repository-tags">
       <el-tag effect="plain">
         <span class="repository-language-color" :style="this.color"></span>{{ repo.langName }}
