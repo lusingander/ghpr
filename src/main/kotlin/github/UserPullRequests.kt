@@ -18,6 +18,7 @@ class UserPullRequests {
               nodes {
                 repository {
                   name
+                  description
                   owner {
                     login
                   }
@@ -78,6 +79,7 @@ data class Edge(
 
 data class Repository(
     val name: String,
+    val description: String,
     val owner: Owner,
     val primaryLanguage: PrimaryLanguage,
     val stargazers: Stargazers,

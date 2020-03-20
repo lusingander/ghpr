@@ -3,7 +3,7 @@
     <el-collapse v-model="activeRepositories">
       <el-collapse-item v-for="repo in repos" :key="repo.name" :name="repo.name">
         <template slot="title">
-          <repository-title :name="repo.name"></repository-title>
+          <repository-title :repo="repo"></repository-title>
         </template>
         <repository-detail :repo="repo"></repository-detail>
         <pull-requests :prs="repo.pullRequests"></pull-requests>
