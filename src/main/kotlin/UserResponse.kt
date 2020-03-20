@@ -29,19 +29,20 @@ private fun buildOwners(nodes: List<PullRequestNode>): List<Owner> {
 
 private fun buildOwner(name: String, prs: List<PullRequestNode>): Owner {
     val url = GITHUB_BASE_URL + name
-    return Owner(name, url, buildRepositories(prs))
+    return Owner(name, url, buildRepositories(prs, url))
 }
 
-private fun buildRepositories(prs: List<PullRequestNode>): List<Repository> {
+private fun buildRepositories(prs: List<PullRequestNode>, ownerUrl: String): List<Repository> {
     return prs.groupBy {
         it.repository.name
     }.map {
-        buildRepository(it.key, it.value)
+        buildRepository(it.key, it.value, ownerUrl)
     }
 }
 
-private fun buildRepository(name: String, prs: List<PullRequestNode>): Repository {
-    return Repository(name, prs.map { buildPullRequest(it) })
+private fun buildRepository(name: String, prs: List<PullRequestNode>, ownerUrl: String): Repository {
+    val url = "$ownerUrl/$name"
+    return Repository(name, url, prs.map { buildPullRequest(it) })
 }
 
 private fun buildPullRequest(pr: PullRequestNode): PullRequest {
@@ -62,6 +63,7 @@ data class Owner(
 
 data class Repository(
     val name: String,
+    val url: String,
     val pullRequests: List<PullRequest>
 )
 
