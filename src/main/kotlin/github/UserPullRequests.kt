@@ -32,12 +32,6 @@ class UserPullRequests {
               }
               edges {
                 cursor
-                node {
-                  repository {
-                    name
-                  }
-                  createdAt
-                }
               }
               totalCount
             }
@@ -74,8 +68,7 @@ data class PullRequestNode(
 )
 
 data class Edge(
-    val cursor: String,
-    val node: PullRequestNode
+    val cursor: String
 )
 
 data class Repository(
