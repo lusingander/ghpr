@@ -2,7 +2,9 @@
   <div class="pull-requests">
     <el-collapse>
       <el-collapse-item v-for="pr in prs" :key="pr.url">
-        <template slot="title">{{ pr.title }}</template>
+        <template slot="title">
+          <pull-request-title :pr="pr"></pull-request-title>
+        </template>
         State: {{ pr.state }} Created at: {{ pr.createdAt }} {{ pr.url }}
       </el-collapse-item>
     </el-collapse>
