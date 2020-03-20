@@ -35,6 +35,7 @@ class UserPullRequests {
                 state
                 url
                 createdAt
+                closedAt
               }
               edges {
                 cursor
@@ -70,7 +71,8 @@ data class PullRequestNode(
     val title: String,
     val state: String,
     val url: String,
-    val createdAt: String
+    val createdAt: String,
+    val closedAt: String?
 )
 
 data class Edge(

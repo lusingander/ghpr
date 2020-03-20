@@ -5,7 +5,7 @@
         <template slot="title">
           <pull-request-title :pr="pr"></pull-request-title>
         </template>
-        State: {{ pr.state }} Created at: {{ pr.createdAt }} {{ pr.url }}
+        <pull-request-detail :pr="pr"></pull-request-detail>
       </el-collapse-item>
     </el-collapse>
   </div>

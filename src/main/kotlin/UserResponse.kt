@@ -56,7 +56,13 @@ private fun buildRepository(name: String, prs: List<PullRequestNode>, ownerUrl: 
 }
 
 private fun buildPullRequest(pr: PullRequestNode): PullRequest {
-    return PullRequest(pr.title, pr.state, pr.url, pr.createdAt)
+    return PullRequest(
+        title = pr.title,
+        state = pr.state,
+        url = pr.url,
+        createdAt = pr.createdAt,
+        closedAt = pr.closedAt
+    )
 }
 
 data class UserResponse(
@@ -86,7 +92,8 @@ data class PullRequest(
     val title: String,
     val state: String,
     val url: String,
-    val createdAt: String
+    val createdAt: String,
+    val closedAt: String?
 )
 
 data class Cursors(
