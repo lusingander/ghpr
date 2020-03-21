@@ -8,6 +8,7 @@
         <el-button icon="el-icon-search" circle @click="search"></el-button>
       </el-col>
     </el-row>
+    <app-footer></app-footer>
   </div>
 </template>
 <script>

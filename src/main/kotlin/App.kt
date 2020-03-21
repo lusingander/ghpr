@@ -10,8 +10,11 @@ fun main() {
     val log = LoggerFactory.getLogger("app.AppKt")
 
     with (Javalin.create()) {
-        config.requestLogger { ctx, ms ->
-            log.info("${ctx.status()} url=${ctx.fullUrl()} time=$ms UA=${ctx.userAgent()} ")
+        with (config) {
+            requestLogger { ctx, ms ->
+                log.info("${ctx.status()} url=${ctx.fullUrl()} time=$ms UA=${ctx.userAgent()} ")
+            }
+            addStaticFiles("/public")
         }
         get("/", VueComponent("<user-search></user-search>"))
         get("/user/:id", VueComponent("<user-prs></user-prs>"))

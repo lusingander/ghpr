@@ -13,6 +13,7 @@
     <div v-if="error">
       {{ error }}
     </div>
+    <app-footer></app-footer>
   </div>
 </template>
 <script>
