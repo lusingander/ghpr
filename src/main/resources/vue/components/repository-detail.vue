@@ -5,8 +5,9 @@
       <el-tag effect="plain">
         <span class="repository-language-color" :style="this.color"></span>{{ repo.langName }}
       </el-tag>
-      <el-tag>Fork: {{ repo.forks }}</el-tag>
+      <el-tag>Watch: {{ repo.watchers }}</el-tag>
       <el-tag><i class="el-icon-star-off"></i> {{ repo.stars }}</el-tag>
+      <el-tag>Fork: {{ repo.forks }}</el-tag>
     </span>
   </div>
 </template>

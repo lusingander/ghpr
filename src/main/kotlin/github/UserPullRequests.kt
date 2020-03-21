@@ -29,6 +29,9 @@ class UserPullRequests {
                   stargazers {
                     totalCount
                   }
+                  watchers {
+                    totalCount
+                  }
                   forkCount
                 }
                 title
@@ -91,6 +94,7 @@ data class Repository(
     val owner: Owner,
     val primaryLanguage: PrimaryLanguage,
     val stargazers: Stargazers,
+    val watchers: Watchers,
     val forkCount: Int
 )
 
@@ -104,5 +108,9 @@ data class PrimaryLanguage(
 )
 
 data class Stargazers(
+    val totalCount: Int
+)
+
+data class Watchers(
     val totalCount: Int
 )
