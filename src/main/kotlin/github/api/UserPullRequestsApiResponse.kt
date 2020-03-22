@@ -74,6 +74,7 @@ data class UserPullRequestsApiResponse(
                 url = pr.url,
                 additions = pr.additions,
                 deletions = pr.deletions,
+                comments = pr.reviews.totalCount + pr.comments.totalCount,
                 createdAt = pr.createdAt,
                 closedAt = pr.closedAt
             )
@@ -105,6 +106,7 @@ data class UserPullRequestsApiResponse(
         val url: String,
         val additions: Int,
         val deletions: Int,
+        val comments: Int,
         val createdAt: String,
         val closedAt: String?
     )

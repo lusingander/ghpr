@@ -26,8 +26,18 @@ data class UserPullRequestsResponse(
         val url: String,
         val additions: Int,
         val deletions: Int,
+        val comments: Comments,
+        val reviews: Reviews,
         val createdAt: String,
         val closedAt: String?
+    )
+
+    data class Comments(
+        val totalCount: Int
+    )
+
+    data class Reviews(
+        val totalCount: Int
     )
 
     data class Edge(

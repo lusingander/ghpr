@@ -35,6 +35,12 @@ class UserPullRequests(
                 url
                 additions
                 deletions
+                comments {
+                  totalCount
+                }
+                reviews {
+                  totalCount
+                }
                 createdAt
                 closedAt
               }
