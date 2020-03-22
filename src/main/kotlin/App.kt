@@ -18,7 +18,7 @@ fun main() {
         }
         get("/", VueComponent("<user-search></user-search>"))
         get("/user/:id", VueComponent("<user-prs></user-prs>"))
-        get("/api/user/:id") { ctx ->
+        get("/api/user/:id/prs") { ctx ->
             val id = ctx.pathParam("id")
             val response = UserPullRequestsClient(id).request()
             ctx.json(response)

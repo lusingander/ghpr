@@ -34,7 +34,7 @@
         spinner: 'el-icon-loading',
         background: 'rgba(0, 0, 0, 0.7)'
       });
-      axios.get("/api/user/" + userId).then(response => {
+      axios.get("/api/user/" + userId + "/prs").then(response => {
         const data = response.data;
         this.activeOwners = data.owners.map(o => o.name);
         this.owners = data.owners;
