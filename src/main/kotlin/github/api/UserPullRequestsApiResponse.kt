@@ -1,8 +1,8 @@
 package com.github.lusingander.github.api
 
-import com.github.lusingander.github.prs.UserPullRequestsResponse as GitHubResponse
+import com.github.lusingander.github.prs.UserPullRequestsResponse
 
-data class UserPullRequestsResponse(
+data class UserPullRequestsApiResponse(
     val owners: List<Owner>,
     val cursors: Cursors,
     val totalCount: Int
@@ -10,20 +10,20 @@ data class UserPullRequestsResponse(
     companion object {
         private const val GITHUB_BASE_URL = "https://github.com/"
 
-        fun build(src: GitHubResponse): UserPullRequestsResponse {
+        fun build(src: UserPullRequestsResponse): UserPullRequestsApiResponse {
             val prs = src.data.user.pullRequests
-            return UserPullRequestsResponse(
+            return UserPullRequestsApiResponse(
                 owners = buildOwners(prs.nodes),
                 cursors = buildCursors(prs.edges),
                 totalCount = prs.totalCount
             )
         }
 
-        private fun buildCursors(edges: List<GitHubResponse.Edge>): Cursors {
+        private fun buildCursors(edges: List<UserPullRequestsResponse.Edge>): Cursors {
             return Cursors(edges.first().cursor, edges.last().cursor)
         }
 
-        private fun buildOwners(nodes: List<GitHubResponse.PullRequestNode>): List<Owner> {
+        private fun buildOwners(nodes: List<UserPullRequestsResponse.PullRequestNode>): List<Owner> {
             return nodes.groupBy {
                 it.repository.owner.login
             }.map {
@@ -31,7 +31,7 @@ data class UserPullRequestsResponse(
             }
         }
 
-        private fun buildOwner(name: String, prs: List<GitHubResponse.PullRequestNode>): Owner {
+        private fun buildOwner(name: String, prs: List<UserPullRequestsResponse.PullRequestNode>): Owner {
             val url = GITHUB_BASE_URL + name
             return Owner(
                 name,
@@ -40,7 +40,7 @@ data class UserPullRequestsResponse(
             )
         }
 
-        private fun buildRepositories(prs: List<GitHubResponse.PullRequestNode>, ownerUrl: String): List<Repository> {
+        private fun buildRepositories(prs: List<UserPullRequestsResponse.PullRequestNode>, ownerUrl: String): List<Repository> {
             return prs.groupBy {
                 it.repository.name
             }.map {
@@ -48,7 +48,7 @@ data class UserPullRequestsResponse(
             }
         }
 
-        private fun buildRepository(name: String, prs: List<GitHubResponse.PullRequestNode>, ownerUrl: String): Repository {
+        private fun buildRepository(name: String, prs: List<UserPullRequestsResponse.PullRequestNode>, ownerUrl: String): Repository {
             val url = "$ownerUrl/$name"
             val repo = prs.first().repository
             return Repository(
@@ -64,7 +64,7 @@ data class UserPullRequestsResponse(
             )
         }
 
-        private fun buildPullRequest(pr: GitHubResponse.PullRequestNode): PullRequest {
+        private fun buildPullRequest(pr: UserPullRequestsResponse.PullRequestNode): PullRequest {
             return PullRequest(
                 title = pr.title,
                 state = pr.state,
