@@ -55,13 +55,13 @@ data class UserPullRequestsApiResponse(
             val repo = prs.first().repository
             return Repository(
                 name = name,
-                description = repo.description,
+                description = repo.description ?: "",
                 url = url,
                 watchers = repo.watchers.totalCount,
                 stars = repo.stargazers.totalCount,
                 forks = repo.forkCount,
-                langName = repo.primaryLanguage.name,
-                langColor = repo.primaryLanguage.color,
+                langName = repo.primaryLanguage?.name,
+                langColor = repo.primaryLanguage?.color,
                 pullRequests = prs.map { buildPullRequest(it) }
             )
         }
@@ -93,8 +93,8 @@ data class UserPullRequestsApiResponse(
         val watchers: Int,
         val stars: Int,
         val forks: Int,
-        val langName: String,
-        val langColor: String,
+        val langName: String?,
+        val langColor: String?,
         val pullRequests: List<PullRequest>
     )
 

@@ -2,7 +2,7 @@
   <div>
     <repository-link :url="repo.url"></repository-link>
     <span class="repository-tags">
-      <el-tag effect="plain">
+      <el-tag v-if="repo.langName && repo.langColor" effect="plain">
         <span class="repository-language-color" :style="this.color"></span>{{ repo.langName }}
       </el-tag>
       <el-tag>

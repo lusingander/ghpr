@@ -36,9 +36,9 @@ data class UserPullRequestsResponse(
 
     data class Repository(
         val name: String,
-        val description: String,
+        val description: String?,
         val owner: Owner,
-        val primaryLanguage: PrimaryLanguage,
+        val primaryLanguage: PrimaryLanguage?,
         val stargazers: Stargazers,
         val watchers: Watchers,
         val forkCount: Int
@@ -50,7 +50,7 @@ data class UserPullRequestsResponse(
 
     data class PrimaryLanguage(
         val name: String,
-        val color: String
+        val color: String?
     )
 
     data class Stargazers(
