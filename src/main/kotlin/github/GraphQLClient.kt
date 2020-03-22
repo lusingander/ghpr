@@ -6,9 +6,9 @@ import com.github.kittinunf.fuel.jackson.responseObject
 import com.github.lusingander.Config
 import java.lang.Exception
 
-abstract class GraphQLClient {
+class GraphQLClient {
 
-    protected inline fun <reified T : Any> executePost(query: String): T {
+    inline fun <reified T : Any> executePost(query: String): T {
         try {
             val (_, _, result) = Fuel.post(Config.githubApiUrl())
                 .header(Headers.AUTHORIZATION, "bearer ${Config.githubApiToken()}")
