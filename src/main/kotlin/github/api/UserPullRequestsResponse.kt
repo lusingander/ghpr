@@ -1,6 +1,6 @@
-package com.github.lusingander
+package com.github.lusingander.github.api
 
-import com.github.lusingander.github.GitHubUserPullRequestsResponse as GitHubResponse
+import com.github.lusingander.github.prs.UserPullRequestsResponse as GitHubResponse
 
 private const val GITHUB_BASE_URL = "https://github.com/"
 
@@ -27,7 +27,11 @@ private fun buildOwners(nodes: List<GitHubResponse.PullRequestNode>): List<Owner
 
 private fun buildOwner(name: String, prs: List<GitHubResponse.PullRequestNode>): Owner {
     val url = GITHUB_BASE_URL + name
-    return Owner(name, url, buildRepositories(prs, url))
+    return Owner(
+        name,
+        url,
+        buildRepositories(prs, url)
+    )
 }
 
 private fun buildRepositories(prs: List<GitHubResponse.PullRequestNode>, ownerUrl: String): List<Repository> {
