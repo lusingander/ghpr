@@ -1,6 +1,8 @@
 package com.github.lusingander.github.api
 
 import com.github.lusingander.github.prs.UserPullRequestsResponse
+import com.github.lusingander.github.prs.UserPullRequestsResponse.Edge
+import com.github.lusingander.github.prs.UserPullRequestsResponse.PullRequestNode
 
 data class UserPullRequestsApiResponse(
     val owners: List<Owner>,
@@ -19,11 +21,11 @@ data class UserPullRequestsApiResponse(
             )
         }
 
-        private fun buildCursors(edges: List<UserPullRequestsResponse.Edge>): Cursors {
+        private fun buildCursors(edges: List<Edge>): Cursors {
             return Cursors(edges.first().cursor, edges.last().cursor)
         }
 
-        private fun buildOwners(nodes: List<UserPullRequestsResponse.PullRequestNode>): List<Owner> {
+        private fun buildOwners(nodes: List<PullRequestNode>): List<Owner> {
             return nodes.groupBy {
                 it.repository.owner.login
             }.map {
@@ -31,7 +33,7 @@ data class UserPullRequestsApiResponse(
             }
         }
 
-        private fun buildOwner(name: String, prs: List<UserPullRequestsResponse.PullRequestNode>): Owner {
+        private fun buildOwner(name: String, prs: List<PullRequestNode>): Owner {
             val url = GITHUB_BASE_URL + name
             return Owner(
                 name,
@@ -40,7 +42,7 @@ data class UserPullRequestsApiResponse(
             )
         }
 
-        private fun buildRepositories(prs: List<UserPullRequestsResponse.PullRequestNode>, ownerUrl: String): List<Repository> {
+        private fun buildRepositories(prs: List<PullRequestNode>, ownerUrl: String): List<Repository> {
             return prs.groupBy {
                 it.repository.name
             }.map {
@@ -48,7 +50,7 @@ data class UserPullRequestsApiResponse(
             }
         }
 
-        private fun buildRepository(name: String, prs: List<UserPullRequestsResponse.PullRequestNode>, ownerUrl: String): Repository {
+        private fun buildRepository(name: String, prs: List<PullRequestNode>, ownerUrl: String): Repository {
             val url = "$ownerUrl/$name"
             val repo = prs.first().repository
             return Repository(
@@ -64,7 +66,7 @@ data class UserPullRequestsApiResponse(
             )
         }
 
-        private fun buildPullRequest(pr: UserPullRequestsResponse.PullRequestNode): PullRequest {
+        private fun buildPullRequest(pr: PullRequestNode): PullRequest {
             return PullRequest(
                 title = pr.title,
                 state = pr.state,
