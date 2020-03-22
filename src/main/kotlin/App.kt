@@ -2,6 +2,7 @@ package com.github.lusingander
 
 import com.github.lusingander.github.GraphQLRequestException
 import com.github.lusingander.github.prs.UserPullRequestsClient
+import com.github.lusingander.github.user.UserRequestsClient
 import io.javalin.Javalin
 import io.javalin.plugin.rendering.vue.VueComponent
 import org.slf4j.LoggerFactory
@@ -18,6 +19,11 @@ fun main() {
         }
         get("/", VueComponent("<user-search></user-search>"))
         get("/user/:id", VueComponent("<user-prs></user-prs>"))
+        get("/api/user/:id") { ctx ->
+            val id = ctx.pathParam("id")
+            val response = UserRequestsClient(id).request()
+            ctx.json(response)
+        }
         get("/api/user/:id/prs") { ctx ->
             val id = ctx.pathParam("id")
             val response = UserPullRequestsClient(id).request()
