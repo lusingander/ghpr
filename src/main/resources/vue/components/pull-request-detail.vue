@@ -2,8 +2,8 @@
   <div>
     <pull-request-link :url="pr.url" :number="pr.number"></pull-request-link>
     <span class="pull-request-date">
-      <span>Created: {{ pr.createdAt }}</span>
-      <span v-if="pr.closedAt">Closed: {{ pr.closedAt }}</span>
+      <span>Created: {{ createdAt }}</span>
+      <span v-if="pr.closedAt">Closed: {{ closedAt }}</span>
     </span>
     <change-lines :additions="pr.additions" :deletions="pr.deletions"></change-lines>
   </div>
@@ -11,7 +11,15 @@
 <script>
   Vue.component("pull-request-detail", {
     template: "#pull-request-detail",
-    props: ["pr"]
+    props: ["pr"],
+    computed: {
+      createdAt: function() {
+        return new Date(this.pr.createdAt).toLocaleString();
+      },
+      closedAt: function() {
+        return new Date(this.pr.closedAt).toLocaleString();
+      }
+    }
   });
 </script>
 <style>
