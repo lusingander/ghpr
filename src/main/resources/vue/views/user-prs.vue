@@ -1,5 +1,5 @@
 <template id="user-prs">
-  <div>
+  <div class="user-prs">
     <div v-if="owners">
       <el-collapse v-model="activeOwners">
         <el-collapse-item v-for="owner in owners" :key="owner.name" :name="owner.name">
@@ -49,4 +49,7 @@
   });
 </script>
 <style>
+  .user-prs {
+    padding: 30px 50px 40px;
+  }
 </style>
