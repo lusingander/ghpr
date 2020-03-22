@@ -1,5 +1,6 @@
 <template id="user-prs">
   <div class="user-prs">
+    <user-profile :profile="profile"></user-profile>
     <div v-if="owners">
       <el-collapse v-model="activeOwners">
         <el-collapse-item v-for="owner in owners" :key="owner.name" :name="owner.name">
@@ -21,6 +22,7 @@
     template: "#user-prs",
     data: () => ({
       activeOwners: [],
+      profile: null,
       owners: null,
       cursors: null,
       total: 0,

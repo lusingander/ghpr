@@ -45,7 +45,7 @@
     border-radius: 50%;
     margin-right: 6px;
   }
-  .octicons {
+  .repository-tags .octicons {
     height: 12px;
     fill: #409EFF;
     vertical-align: text-bottom;
