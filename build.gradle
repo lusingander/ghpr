@@ -35,8 +35,19 @@ run {
     def properties = new Properties()
     def f = project.rootProject.file("local.properties")
     if (f.exists()) {
-        println "exist properties"
         properties.load(f.newDataInputStream())
         environment "GITHUB_API_TOKEN", properties.getProperty("github.api.token")
+    }
+}
+
+task stage(type: Copy, dependsOn: [clean, build])
+build.mustRunAfter clean
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.github.lusingander.AppKt'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
