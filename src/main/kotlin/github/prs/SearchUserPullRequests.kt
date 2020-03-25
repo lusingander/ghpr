@@ -11,7 +11,7 @@ class SearchUserPullRequests(
 
     override fun body() = """
         {
-          search(query: ${this.searchQuery()}, type: ISSUE, first: 10) {
+          search(query: ${this.searchQuery()}, type: ISSUE, first: 50, after: null) {
             issueCount
             edges {
               cursor
