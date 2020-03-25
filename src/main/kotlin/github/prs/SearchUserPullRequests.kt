@@ -6,9 +6,12 @@ class SearchUserPullRequests(
     private val id: String
 ): GraphQLRequests() {
 
+    private fun searchQuery(): String =
+        """\"author:${this.id} -user:${this.id} is:pr sort:created-desc\""""
+
     override fun body() = """
         {
-          search(query: \"author:${this.id} -user:${this.id} is:pr sort:created-desc \", type: ISSUE, first: 10) {
+          search(query: ${this.searchQuery()}, type: ISSUE, first: 10) {
             issueCount
             edges {
               cursor
