@@ -1,7 +1,7 @@
 package com.github.lusingander
 
 import com.github.lusingander.github.GraphQLRequestException
-import com.github.lusingander.github.prs.UserPullRequestsClient
+import com.github.lusingander.github.prs.SearchUserPullRequestsClient
 import com.github.lusingander.github.user.UserRequestsClient
 import io.javalin.Javalin
 import io.javalin.plugin.rendering.vue.VueComponent
@@ -26,7 +26,7 @@ fun main() {
         }
         get("/api/user/:id/prs") { ctx ->
             val id = ctx.pathParam("id")
-            val response = UserPullRequestsClient(id).request()
+            val response = SearchUserPullRequestsClient(id).request()
             ctx.json(response)
         }
         exception(GraphQLRequestException::class.java) { _, ctx -> ctx.status(400) }
